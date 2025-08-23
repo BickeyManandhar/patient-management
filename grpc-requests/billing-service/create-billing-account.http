@@ -1,0 +1,10 @@
+### CREATE billing
+#the endpoint is from proto file ->billing_service.proto
+GRPC localhost:9001/BillingService/CreateBillingAccount
+Content-Type: application/json
+
+{
+  "patientId" : "123",
+  "name" : "John Doe",
+  "email" : "j@gmail.com"
+}
