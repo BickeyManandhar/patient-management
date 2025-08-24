@@ -1,0 +1,11 @@
+### CREATE patient
+POST http://localhost:4004/api/patients
+Content-Type: application/json
+
+{
+  "name": "Api-Gateway Test8",
+  "email": "apiGatewayTest8@gmail.com",
+  "address": "123 Main St, VA",
+  "dateOfBirth": "1999-06-15",
+  "registeredDate": "2025-08-23"
+}
