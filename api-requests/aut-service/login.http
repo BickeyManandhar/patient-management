@@ -1,0 +1,8 @@
+### Login Request to retrieve a token
+POST http://localhost:4005/login
+Content-Type: application/json
+
+{
+  "email": "bickey@gmail.com",
+  "password": "password123"
+}
