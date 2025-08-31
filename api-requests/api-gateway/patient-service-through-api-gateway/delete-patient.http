@@ -1,3 +1,15 @@
+### Login Request to retrieve a token
+POST http://localhost:4004/auth/login
+Content-Type: application/json
+
+{
+  "email": "bickey@gmail.com",
+  "password": "password123"
+}
+
+> {% client.global.set("token", response.body.token) %}
+
 ### DELETE patient
 DELETE http://localhost:4004/api/patients/123e4567-e89b-12d3-a456-426614174001
 Content-Type: application/json
+Authorization: Bearer {{token}}

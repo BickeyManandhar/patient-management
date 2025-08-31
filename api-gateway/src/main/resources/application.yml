@@ -18,6 +18,10 @@ spring:
 #                 REST CLIENT -> http://localhost:4004/api/patients
 #                 API GATEWAY -> http://patient-service:4000/patients
                 - StripPrefix=1
+#                this will look for class that is prefixed with "JwtValidation"
+#                i.e. "JwtValidationGatewayFilterFactory" and apply the filter
+#                from there for this route
+                - JwtValidation
             - id: api-docs-patient-route
               uri: http://patient-service:4000
               predicates:
@@ -26,5 +30,13 @@ spring:
 #                REST CLIENT -> http://localhost:4004/api-docs/patients
 #                API GATEWAY -> http://patient-service:4000/v3/api-docs
                 - RewritePath=/api-docs/patients,/v3/api-docs
+            - id: auth-service-route
+              uri: http://auth-service:4005
+#                REST CLIENT -> http://localhost:4005/auth/login
+#                API GATEWAY -> http://patient-service:4005/login
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1
 
 

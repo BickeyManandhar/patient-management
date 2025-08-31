@@ -9,6 +9,4 @@ Content-Type: application/json
 
 > {% client.global.set("token", response.body.token) %}
 
-### GET patient
-GET http://localhost:4004/api/patients
-Authorization: Bearer {{token}}
+
