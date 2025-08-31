@@ -22,6 +22,7 @@ spring:
 #                i.e. "JwtValidationGatewayFilterFactory" and apply the filter
 #                from there for this route
                 - JwtValidation
+
             - id: api-docs-patient-route
               uri: http://patient-service:4000
               predicates:
@@ -30,6 +31,14 @@ spring:
 #                REST CLIENT -> http://localhost:4004/api-docs/patients
 #                API GATEWAY -> http://patient-service:4000/v3/api-docs
                 - RewritePath=/api-docs/patients,/v3/api-docs
+
+            - id: api-docs-auth-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/api-docs/auth
+              filters:
+                - RewritePath=/api-docs/auth,/v3/api-docs
+
             - id: auth-service-route
               uri: http://auth-service:4005
 #                REST CLIENT -> http://localhost:4005/auth/login
@@ -38,5 +47,3 @@ spring:
                 - Path=/auth/**
               filters:
                 - StripPrefix=1
-
-

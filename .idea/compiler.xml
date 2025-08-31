@@ -11,6 +11,7 @@
         <module name="api-gateway" />
         <module name="patient-service" />
         <module name="auth-service" />
+        <module name="integration-test" />
         <module name="billing-service" />
       </profile>
     </annotationProcessing>
