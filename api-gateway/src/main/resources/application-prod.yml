@@ -1,0 +1,49 @@
+server:
+  port: 4004
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: patient-service-route
+              uri: http://host.docker.internal:4000
+              predicates:
+                - Path=/api/patients/**
+              filters:
+#                stripping "/api" from "/api/patients/**"
+#                 REST CLIENT -> http://localhost:4004/api/patients
+#                 API GATEWAY -> http://patient-service:4000/patients
+                - StripPrefix=1
+#                this will look for class that is prefixed with "JwtValidation"
+#                i.e. "JwtValidationGatewayFilterFactory" and apply the filter
+#                from there for this route
+                - JwtValidation
+
+            - id: api-docs-patient-route
+              uri: http://host.docker.internal:4000
+              predicates:
+                - Path=/api-docs/patients
+              filters:
+#                REST CLIENT -> http://localhost:4004/api-docs/patients
+#                API GATEWAY -> http://patient-service:4000/v3/api-docs
+                - RewritePath=/api-docs/patients,/v3/api-docs
+
+            - id: api-docs-auth-route
+              uri: http://host.docker.internal:4005
+              predicates:
+                - Path=/api-docs/auth
+              filters:
+                - RewritePath=/api-docs/auth,/v3/api-docs
+
+            - id: auth-service-route
+              uri: http://host.docker.internal:4005
+#                REST CLIENT -> http://localhost:4005/auth/login
+#                API GATEWAY -> http://patient-service:4005/login
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1
