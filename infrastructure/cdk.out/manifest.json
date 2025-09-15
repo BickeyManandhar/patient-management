@@ -221,6 +221,24 @@
             "type": "aws:cdk:logicalId",
             "data": "PatientServiceDBHealthCheck"
           }
+        ],
+        "/localstack/MskCluster": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MskCluster"
+          }
+        ],
+        "/localstack/PatientManagementCluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientManagementCluster98E10F8D"
+          }
+        ],
+        "/localstack/PatientManagementCluster/DefaultServiceDiscoveryNamespace/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientManagementClusterDefaultServiceDiscoveryNamespace72C5F264"
+          }
         ]
       },
       "displayName": "localstack"

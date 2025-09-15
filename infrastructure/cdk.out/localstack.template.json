@@ -642,6 +642,38 @@
      "Type": "TCP"
     }
    }
+  },
+  "MskCluster": {
+   "Type": "AWS::MSK::Cluster",
+   "Properties": {
+    "BrokerNodeGroupInfo": {
+     "BrokerAZDistribution": "DEFAULT",
+     "ClientSubnets": [
+      {
+       "Ref": "PatientManagementVPCPrivateSubnet1Subnet05B10E79"
+      },
+      {
+       "Ref": "PatientManagementVPCPrivateSubnet2Subnet8A2E409C"
+      }
+     ],
+     "InstanceType": "kafka.m5.xlarge"
+    },
+    "ClusterName": "kafka-cluster",
+    "KafkaVersion": "2.8.0",
+    "NumberOfBrokerNodes": 1
+   }
+  },
+  "PatientManagementCluster98E10F8D": {
+   "Type": "AWS::ECS::Cluster"
+  },
+  "PatientManagementClusterDefaultServiceDiscoveryNamespace72C5F264": {
+   "Type": "AWS::ServiceDiscovery::PrivateDnsNamespace",
+   "Properties": {
+    "Name": "patient-management.local",
+    "Vpc": {
+     "Ref": "PatientManagementVPC522067E7"
+    }
+   }
   }
  }
 }
